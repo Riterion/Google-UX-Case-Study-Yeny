@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeny - UX Case Study</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fafafa;
+        }
+
+        header {
+            background: white;
+            padding: 2rem 0;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .hero {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .meta-item h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #999;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta-item p {
+            font-size: 1.1rem;
+            color: #1a1a1a;
+        }
+
+        section {
+            padding: 4rem 0;
+            background: white;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        section:first-of-type {
+            border-top: none;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: #1a1a1a;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .problem-card {
+            padding: 1.5rem;
+            background: #fafafa;
+            border-radius: 8px;
+        }
+
+        .problem-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            color: #2563eb;
+        }
+
+        .problem-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .personas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .persona {
+            padding: 2rem;
+            background: #f0f7ff;
+            border-left: 4px solid #2563eb;
+            border-radius: 4px;
+        }
+
+        .persona h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .persona p {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .findings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .finding-item {
+            padding: 1.5rem;
+            background: #fafafa;
+            border-radius: 8px;
+        }
+
+        .finding-item h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            color: #2563eb;
+        }
+
+        .finding-item p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.8rem;
+        }
+
+        .insight {
+            font-size: 0.85rem;
+            background: white;
+            padding: 0.8rem;
+            border-radius: 4px;
+            color: #555;
+            font-style: italic;
+        }
+
+        .takeaways {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .takeaway-item {
+            padding: 1.5rem;
+            background: #fafafa;
+            border-radius: 8px;
+        }
+
+        .takeaway-item h4 {
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            color: #1a1a1a;
+        }
+
+        .takeaway-item ul {
+            list-style: none;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .takeaway-item li {
+            margin-bottom: 0.6rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .takeaway-item li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #2563eb;
+        }
+
+        .next-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            counter-increment: steps;
+            padding: 1.5rem;
+            background: #f0f7ff;
+            border-radius: 8px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .step h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            color: #2563eb;
+        }
+
+        .step p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        footer {
+            background: white;
+            border-top: 1px solid #e5e5e5;
+            padding: 3rem 0;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: #666;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-link {
+            display: inline-block;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .contact-link:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            header h1 {
+                font-size: 1.4rem;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 2.5rem 0;
+            }
+
+            h3 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Yeny</h1>
+            <p>A UX Case Study by Ali Hamza YILDIRIM</p>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h2>Designing a Smarter Way to Shop for Gaming Gear</h2>
+            <p>Yeny is a user-centered gaming gear marketplace that simplifies the buying process for gamers by providing advanced filtering tools and international purchasing solutions.</p>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <h3>Duration</h3>
+                    <p>3 Weeks</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Course</h3>
+                    <p>Google UX Design Certificate</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Role</h3>
+                    <p>UX & UI Designer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h3>The Problem</h3>
+            <p style="margin-bottom: 2rem; color: #666; font-size: 1.05rem;">Many professional and aspiring gamers struggle to find the right gaming equipment because online stores provide limited product information. Additionally, users in some regions cannot access new gaming products released abroad due to customs restrictions or delayed availability in their country.</p>
+
+            <h3 style="margin-top: 2rem; font-size: 1.3rem;">Pain Points</h3>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h4>Limited Product Information</h4>
+                    <p>Users struggle to understand which gaming gear fits their needs because most online stores only provide basic specs without deeper technical details.</p>
+                </div>
+                <div class="problem-card">
+                    <h4>Difficulty Comparing Products</h4>
+                    <p>Many gamers want to compare products based on specific technical features, but existing sites don't offer sufficient filters or comparison tools.</p>
+                </div>
+                <div class="problem-card">
+                    <h4>Restricted Access to Global Products</h4>
+                    <p>Users are frustrated that new gaming equipment released abroad isn't available in their country for months or years.</p>
+                </div>
+                <div class="problem-card">
+                    <h4>Lack of Guidance</h4>
+                    <p>Beginners often don't know what to look for in gaming gear and need clearer information to make confident purchasing decisions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h3>Understanding the User</h3>
+            <p style="margin-bottom: 2rem; color: #666; font-size: 1.05rem;">Through qualitative user research, I identified two primary personas representing different user segments.</p>
+
+            <div class="personas">
+                <div class="persona">
+                    <h4>Persona: Alp Kaya</h4>
+                    <p><strong>Profile:</strong> Software developer and competitive gamer</p>
+                    <p><strong>Need:</strong> Find high-performance gaming equipment because his current mouse is sluggish and costs him wins in games.</p>
+                </div>
+                <div class="persona">
+                    <h4>Persona: Can Demir</h4>
+                    <p><strong>Profile:</strong> Tech-savvy student in Istanbul</p>
+                    <p><strong>Need:</strong> Buy newly released tech gear from other countries because it's not available locally and importers charge too much.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h3>Design Process</h3>
+            <p style="margin-bottom: 2rem; color: #666; font-size: 1.05rem;">From initial sketches to high-fidelity designs, here's the evolution of Yeny.</p>
+
+            <div style="margin-bottom: 3rem;">
+                <h4 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #1a1a1a;">Paper Wireframes</h4>
+                <div style="background: #fafafa; border-radius: 8px; padding: 2rem; margin-bottom: 2rem; text-align: center;">
+                    <img src="https://imgur.com/0jIL81u.jpg" alt="Paper Wireframes" style="width: 100%; border-radius: 8px; margin-bottom: 1rem; max-height: 500px; object-fit: cover;">
+                    <p style="color: #666; font-size: 0.9rem;">Initial sketches of key user flows</p>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 3rem;">
+                <h4 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #1a1a1a;">Digital Wireframes</h4>
+                <div style="background: #fafafa; border-radius: 8px; padding: 2rem; margin-bottom: 1.5rem; text-align: center;">
+                    <img src="https://imgur.com/Inck3eS.jpg" alt="Digital Wireframes" style="width: 100%; border-radius: 8px; margin-bottom: 1rem; max-height: 500px; object-fit: cover;">
+                    <p style="color: #666; font-size: 0.9rem;">High-fidelity wireframes created in Figma</p>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 3rem;">
+                <h4 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #1a1a1a;">Low-Fidelity Prototype</h4>
+                <div style="background: #f0f7ff; border-radius: 8px; padding: 1.5rem; margin-bottom: 1rem; border-left: 4px solid #2563eb;">
+                    <p style="color: #666; margin-bottom: 0.8rem;">View the interactive low-fidelity prototype:</p>
+                    <a href="https://www.figma.com/proto/8ZlVLKVqGJhTT7aWAdBqRp/Coursera-UX-Case-Study---Yeny?page-id=0%3A1&node-id=409-4531&p=f&viewport=348%2C777%2C0.49&t=0wjg3R8vgBbVKmgg-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=409%3A4531" target="_blank" style="display: inline-block; padding: 0.8rem 1.5rem; background: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: 500; transition: background 0.3s;">
+                        📱 View Prototype
+                    </a>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 3rem;">
+                <h4 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #1a1a1a;">Mockups</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 1.5rem;">
+                    <div style="background: #fafafa; border-radius: 8px; padding: 1.5rem; text-align: center;">
+                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem; font-weight: 500;">Mobile Mockup</p>
+                        <img src="https://imgur.com/O4vFaGR.jpg" alt="Mobile Mockup" style="width: 100%; border-radius: 8px; max-height: 400px; object-fit: contain;">
+                    </div>
+                    <div style="background: #fafafa; border-radius: 8px; padding: 1.5rem; text-align: center;">
+                        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem; font-weight: 500;">Desktop Mockup</p>
+                        <img src="https://imgur.com/5R3DLlI.jpg" alt="Desktop Mockup" style="width: 100%; border-radius: 8px; max-height: 400px; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 style="font-size: 1.1rem; margin-bottom: 1.5rem; color: #1a1a1a;">High-Fidelity Prototype</h4>
+                <div style="background: #f0f7ff; border-radius: 8px; padding: 1.5rem; border-left: 4px solid #2563eb;">
+                    <p style="color: #666; margin-bottom: 1rem;">View the interactive high-fidelity prototype:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <a href="https://www.figma.com/proto/8ZlVLKVqGJhTT7aWAdBqRp/Coursera-UX-Wireframe?page-id=291%3A5290&node-id=291-6467&p=f&viewport=184%2C401%2C0.05&t=mZPYwHIUlaVdHSpS-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=291%3A5291" target="_blank" style="display: inline-block; padding: 0.8rem 1.5rem; background: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: 500; transition: background 0.3s; text-align: center;">
+                            🖥️ Desktop
+                        </a>
+                        <a href="https://www.figma.com/proto/8ZlVLKVqGJhTT7aWAdBqRp/Coursera-UX-Wireframe?page-id=71%3A97&node-id=321-1928&p=f&viewport=-17%2C1143%2C0.17&t=SmlxWvQPAoYH49AX-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=321%3A1928" target="_blank" style="display: inline-block; padding: 0.8rem 1.5rem; background: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: 500; transition: background 0.3s; text-align: center;">
+                            📱 Mobile
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h3>Usability Study Findings</h3>
+            <p style="margin-bottom: 2rem; color: #666; font-size: 1.05rem;">I conducted an unmoderated usability study with 5 participants in Turkey over 10-20 minutes each. Key findings informed design iterations.</p>
+
+            <div class="findings">
+                <div class="finding-item">
+                    <h4>Filter Panel Visibility</h4>
+                    <p>Users found the detailed filtering panel helpful but said it was slightly hard to notice at first glance on the homepage.</p>
+                    <div class="insight">Make the filter panel more prominent or add an onboarding tooltip to highlight its features.</div>
+                </div>
+                <div class="finding-item">
+                    <h4>Too Many Filter Options</h4>
+                    <p>Some users felt overwhelmed by too many filter categories appearing at the same time.</p>
+                    <div class="insight">Group related filters and use collapsible sections for a cleaner layout.</div>
+                </div>
+                <div class="finding-item">
+                    <h4>Missing Sorting Options</h4>
+                    <p>Participants wanted clearer sorting choices (by price, popularity, newest release) in addition to filtering.</p>
+                    <div class="insight">Add a sticky "Sort by" menu near the top of the results page for better control.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h3>Design Approach</h3>
+            <p style="margin-bottom: 2rem; color: #666; font-size: 1.05rem;">The design prioritizes clarity, accessibility, and intuitive navigation for both desktop and mobile users.</p>
+
+            <div class="takeaways">
+                <div class="takeaway-item">
+                    <h4>Clear Visual Hierarchy</h4>
+                    <p>Established strong information hierarchy to guide users' attention and ensure key content stands out clearly.</p>
+                </div>
+                <div class="takeaway-item">
+                    <h4>Color & Contrast</h4>
+                    <p>Carefully selected blue color theme to evoke trust, with WCAG AA contrast standards for accessibility.</p>
+                </div>
+                <div class="takeaway-item">
+                    <h4>Legible Typography</h4>
+                    <p>Used sans-serif typefaces for better readability on both desktop and mobile screens.</p>
+                </div>
+                <div class="takeaway-item">
+                    <h4>Familiar Patterns</h4>
+                    <p>Interface follows common e-commerce conventions, helping users navigate intuitively based on familiar mental models.</p>
+                </div>
+                <div class="takeaway-item">
+                    <h4>Clean Design</h4>
+                    <p>Minimalist layout reduces visual noise and supports cognitive ease.</p>
+                </div>
+                <div class="takeaway-item">
+                    <h4>Gestalt Principles</h4>
+                    <p>Applied proximity, similarity, and alignment to enhance visual grouping and user flow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h3>Key Takeaways</h3>
+            <p style="margin-bottom: 2rem; color: #666; font-size: 1.05rem;"><strong>Impact:</strong> Yeny empowers gamers to make smarter buying decisions and access global gaming products without barriers.</p>
+
+            <div class="takeaway-item" style="max-width: 700px;">
+                <h4>What I Learned</h4>
+                <ul>
+                    <li>The importance of conducting user research to uncover real pain points</li>
+                    <li>How detailed features like filtering can remain simple through good UX design</li>
+                    <li>The value of accessibility and visual hierarchy in building intuitive interfaces</li>
+                    <li>How continuous user feedback drives iteration and improves the final product</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h3>Next Steps</h3>
+            <div class="next-steps">
+                <div class="step">
+                    <h4>Gather User Feedback</h4>
+                    <p>Refine the filtering system and international ordering process based on feedback from professional and casual gamers.</p>
+                </div>
+                <div class="step">
+                    <h4>Designer Collaboration</h4>
+                    <p>Review overall visual hierarchy, accessibility, and flow with experienced UX/UI designers.</p>
+                </div>
+                <div class="step">
+                    <h4>Full Responsiveness</h4>
+                    <p>Develop a fully responsive version for seamless experience across desktop, tablet, and mobile devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Thank you for reviewing this case study!</p>
+            <p>I'd love to hear your thoughts and feedback on this project.</p>
+            <a href="mailto:Eyixedu@gmail.com" class="contact-link">Get in touch → Eyixedu@gmail.com</a>
+        </div>
+    </footer>
+</body>
+</html>
